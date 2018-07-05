@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="parentPane" maxHeight="600.0" maxWidth="900.0" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainScreen">
+   <children>
+      <ScrollPane fx:id="scrollPeople" layoutY="100.0" maxHeight="500.0" maxWidth="200.0" minHeight="500.0" minWidth="200.0" prefHeight="500.0" prefWidth="200.0">
+        <content>
+          <AnchorPane fx:id="peoplePane" maxHeight="500.0" maxWidth="200.0" minHeight="500.0" minWidth="200.0" prefHeight="500.0" prefWidth="200.0" />
+        </content>
+      </ScrollPane>
+      <Label layoutX="8.0" layoutY="75.0" maxHeight="20.0" maxWidth="80.0" minHeight="20.0" minWidth="80.0" prefHeight="20.0" prefWidth="80.0" text="People" textFill="#797575">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAllExpenses" layoutX="8.0" layoutY="30.0" maxHeight="25.0" maxWidth="160.0" minHeight="25.0" minWidth="160.0" prefHeight="25.0" prefWidth="160.0" text="View All Expenses" textFill="#797575">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAddPerson" layoutX="150.0" layoutY="75.0" text="Add" textFill="#797575">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

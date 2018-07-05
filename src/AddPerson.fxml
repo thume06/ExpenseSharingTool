@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="screenPane" prefHeight="90.0" prefWidth="220.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddPerson">
+   <children>
+      <Label layoutX="8.0" layoutY="18.0" text="Name:">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtName" layoutX="54.0" layoutY="13.0" prefHeight="25.0" prefWidth="150.0" />
+      <Button fx:id="btnAdd" layoutX="10.0" layoutY="53.0" mnemonicParsing="false" onAction="#addPressed" prefHeight="25.0" prefWidth="90.0" text="Add" />
+      <Button fx:id="btdCancel" layoutX="120.0" layoutY="53.0" mnemonicParsing="false" onAction="#cancelPressed" prefHeight="25.0" prefWidth="90.0" text="Cancel" />
+   </children>
+</AnchorPane>
