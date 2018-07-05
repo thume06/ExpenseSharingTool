@@ -45,9 +45,6 @@ public class MainScreen implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         screen = Main.getInstance();
 
-        screen.setWidth(SCREEN_WIDTH);
-        screen.setHeight(SCREEN_HEIGHT);
-
         scrollPeople.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPeople.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPeople.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-background-color:transparent;");
@@ -97,13 +94,41 @@ public class MainScreen implements Initializable{
     public void addPerson(String n){
         final int x = 15;
         int lastY = people.size() * 20 - 15;
+        final int personIndex = people.size();
+
         people.add(n);
+
         Label person = new Label();
         person.setText(people.get(people.size() - 1));
         person.setTextFill(Color.web("#797575"));
         person.setFont(Font.font("Arial", 14));
+
         peoplePane.getChildren().add(person);
         person.setLayoutX(x);
         person.setLayoutY(lastY + 20);
+
+        person.addEventFilter(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent mouseEvent) {labelHovered(person);}
+        });
+        person.addEventFilter(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent mouseEvent) {labelExited(person);}
+        });
+        person.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent mouseEvent) {personPressed(personIndex);}
+        });
+
+        if(people.size() > 24){
+            double h = peoplePane.getHeight();
+            if (people.size() == 25){
+                h -= 5;
+            }
+            peoplePane.setMaxHeight(h + 20 );
+            peoplePane.setPrefHeight(h + 20 );
+            scrollPeople.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        }
+    }
+
+    private void personPressed(int p){
+        System.out.println(people.get(p) + " pressed.");
     }
 }

@@ -33,6 +33,9 @@ public class AddPerson implements Initializable{
         if(txtName.getText().equals("")){
             return;
         }
+        else if(txtName.getText().length() > 20){
+            return;
+        }
         Stage stage = (Stage) screenPane.getScene().getWindow();
         stage.close();
         mainScreen.addPerson(txtName.getText());
