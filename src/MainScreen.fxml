@@ -29,5 +29,7 @@
             <Font name="Arial" size="16.0" />
          </font>
       </Label>
+      <Button fx:id="btnAddExpense" layoutX="305.0" layoutY="43.0" mnemonicParsing="false" onAction="#addExpensePressed" text="Add Expense" />
+      <Button fx:id="btnSettleDebt" layoutX="563.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Settle Debt" />
    </children>
 </AnchorPane>

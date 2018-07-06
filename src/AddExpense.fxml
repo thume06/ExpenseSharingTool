@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="251.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddExpense">
+   <children>
+      <ChoiceBox fx:id="chcCategory" layoutX="126.0" layoutY="26.0" prefWidth="150.0" />
+      <Label layoutX="26.0" layoutY="29.0" text="Category:">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="61.0" text="Cost:">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCost" layoutX="126.0" layoutY="59.0" />
+      <Label layoutX="25.0" layoutY="96.0" text="Payer:">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="chcPayer" layoutX="126.0" layoutY="94.0" prefWidth="150.0" />
+      <Label layoutX="25.0" layoutY="126.0" text="Debtors:">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Label>
+      <Slider fx:id="barDistribution" layoutX="126.0" layoutY="158.0" prefHeight="14.0" prefWidth="150.0" />
+      <Label layoutX="25.0" layoutY="155.0" text="Distribution:">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="103.0" layoutY="212.0" mnemonicParsing="false" onAction="#addExpensePressed" prefHeight="25.0" prefWidth="95.0" text="Add Expense" />
+      <MenuButton fx:id="mnuDebtors" layoutX="126.0" layoutY="124.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Debtors">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </MenuButton>
+      <Label fx:id="lblDistribution" alignment="CENTER" layoutX="24.0" layoutY="175.0" prefHeight="17.0" prefWidth="252.0" text="?payer will pay ?%" />
+   </children>
+</AnchorPane>

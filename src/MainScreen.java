@@ -4,6 +4,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
@@ -23,12 +25,12 @@ public class MainScreen implements Initializable{
     public MainScreen(){
         instance = this;
     }
-
     private static MainScreen instance;
-
     public static MainScreen getInstance(){return instance;}
 
     private Main screen;
+
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
     private final int SCREEN_WIDTH = 900;
     private final int SCREEN_HEIGHT = 600;
@@ -40,6 +42,8 @@ public class MainScreen implements Initializable{
     @FXML Label lblAddPerson;
     @FXML ScrollPane scrollPeople;
     @FXML AnchorPane peoplePane;
+    @FXML Button btnAddExpense;
+    @FXML Button btnSettleDebt;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -130,5 +134,34 @@ public class MainScreen implements Initializable{
 
     private void personPressed(int p){
         System.out.println(people.get(p) + " pressed.");
+    }
+
+    @FXML
+    private void addExpensePressed(){
+        if(people.size() < 2){
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("You must have at least 2 people to add expenses.");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("AddExpense.fxml"));;
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setTitle("Add Expense");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<String> getPeople(){
+        return people;
     }
 }

@@ -1,13 +1,19 @@
+import java.util.ArrayList;
+
 public class Expense {
 
     private float cost;
-    private float[] distribution;
-    private String[] people;
+    private double distribution;
+    private String category;
+    private String payer;
+    private ArrayList<String> debtors;
 
-    public Expense(float c, float[] d, String[] p){
+    public Expense(String cat, float c, String p, double d, ArrayList<String> db){
+        category = cat;
         cost = c;
+        payer = p;
         distribution = d;
-        people = p;
+        debtors = db;
     }
 
     //Getters and setters
@@ -20,19 +26,35 @@ public class Expense {
         this.cost = cost;
     }
 
-    public float[] getDistribution() {
+    public double getDistribution() {
         return distribution;
     }
 
-    public void setDistribution(float[] distribution) {
+    public void setDistribution(double distribution) {
         this.distribution = distribution;
     }
 
-    public String[] getPeople() {
-        return people;
+    public String getCategory() {
+        return category;
     }
 
-    public void setPeople(String[] people) {
-        this.people = people;
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getPayer() {
+        return payer;
+    }
+
+    public void setPayer(String payer) {
+        this.payer = payer;
+    }
+
+    public ArrayList<String> getDebtors() {
+        return debtors;
+    }
+
+    public void setDebtors(ArrayList<String> debtors) {
+        this.debtors = debtors;
     }
 }
