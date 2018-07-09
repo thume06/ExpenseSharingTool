@@ -15,7 +15,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -30,12 +30,15 @@ public class MainScreen implements Initializable{
 
     private Main screen;
 
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    private Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
     private final int SCREEN_WIDTH = 900;
     private final int SCREEN_HEIGHT = 600;
 
+    private boolean loading = false;
+
     private ArrayList<String> people = new ArrayList<>();
+    private ArrayList<Expense> expenses = new ArrayList<>();
 
     @FXML AnchorPane parentPane;
     @FXML Label lblAllExpenses;
@@ -69,6 +72,8 @@ public class MainScreen implements Initializable{
             @Override public void handle(MouseEvent mouseEvent) {addPersonPressed();}
         });
 
+        loadPeople();
+        loadExpenses();
     }
 
     private void labelHovered(Label l){
@@ -101,6 +106,7 @@ public class MainScreen implements Initializable{
         final int personIndex = people.size();
 
         people.add(n);
+        if(!loading) savePeople();
 
         Label person = new Label();
         person.setText(people.get(people.size() - 1));
@@ -161,7 +167,76 @@ public class MainScreen implements Initializable{
         }
     }
 
+    public void addExpense(Expense e){
+        expenses.add(e);
+        if(!loading) saveExpenses();
+    }
+
     public ArrayList<String> getPeople(){
         return people;
+    }
+
+    private void savePeople(){
+        try {
+            FileOutputStream fos = new FileOutputStream("res/savedPeople.ser");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(people);
+            oos.close();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void loadPeople(){
+        File saveDir = new File("res/savedPeople.ser");
+        if(!saveDir.exists()) return;
+        try {
+            FileInputStream fis = new FileInputStream("res/savedPeople.ser");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            ArrayList<String> tempPeople = new ArrayList<>();
+            tempPeople = (ArrayList<String>) ois.readObject();
+            loading = true;
+            for(int i = 0; i < tempPeople.size(); i++){
+                addPerson(tempPeople.get(i));
+            }
+            loading = false;
+            ois.close();
+            fis.close();
+        }
+        catch (IOException e) {e.printStackTrace();}
+        catch(ClassNotFoundException e){e.printStackTrace();}
+    }
+
+    private void saveExpenses(){
+        try {
+            FileOutputStream fos = new FileOutputStream("res/savedExpenses.ser");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(expenses);
+            oos.close();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void loadExpenses(){
+        File saveDir = new File("res/savedExpenses.ser");
+        if(!saveDir.exists()) return;
+        try {
+            FileInputStream fis = new FileInputStream("res/savedExpenses.ser");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            ArrayList<Expense> tempExpenses = new ArrayList<>();
+            tempExpenses = (ArrayList<Expense>) ois.readObject();
+            loading = true;
+            for(int i = 0; i < tempExpenses.size(); i++){
+                addExpense(tempExpenses.get(i));
+            }
+            loading = false;
+            ois.close();
+            fis.close();
+        }
+        catch (IOException e) {e.printStackTrace();}
+        catch(ClassNotFoundException e){e.printStackTrace();}
     }
 }

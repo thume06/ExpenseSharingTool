@@ -82,6 +82,8 @@ public class AddExpense implements Initializable{
 
         Stage stage = (Stage) txtCost.getScene().getWindow();
         stage.close();
+
+        mainScreen.addExpense(expense);
     }
 
     //Loads in the selectable debtors. Called every time the payer is changed
